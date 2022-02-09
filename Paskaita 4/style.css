@@ -1,0 +1,68 @@
+
+*{
+  margin: 0;
+  padding: 0;  
+}
+/* ol tėviniame HTML elemente visiems li elementams priskiriamos stiliaus taisyklės */
+ol li{
+    text-align: center;
+    list-style-position: inside;
+    list-style: none; /* Nerodo numeracijos */
+    margin: 0 0 0 0;
+    border: darkgrey;
+    /*display: inline-block;*/
+}
+
+/* Stilių pritaiko visiems li elementams, kurie turi klasę my_link ir yra ol elemente */
+ol li.my_link{
+  font-size: 2rem;
+}
+
+/* ol->li->a kelias, kuriems elementams taikyti */
+ol li a{
+    color: burlywood;
+}
+
+ol li a.linkas{
+    color: gold;
+}
+
+.my_link{
+    background-color: aquamarine;
+}
+
+body.my_link{
+    background-color: rgb(129, 99, 99);
+}
+
+li {
+    font-size: 2rem;
+}
+
+/* # nurodo ID. Visada unikalus */
+#spalva{
+  color: green;
+}
+
+/* . nurodo klasę */
+.spalva{
+  color: honeydew;
+}
+
+p span{
+  font-size: 2rem;
+}
+
+p {
+    font-size: 4rem;
+}
+
+div{
+    width: 200px;
+    height: 300px;
+    background-color: lime;
+    padding-left: 5rem; /* divo turinį patraukia nuo kairės */
+    margin-left: 2rem; /* Patraukia divą nuo kairės */
+    border: 1rem dotted midnightblue;
+
+}

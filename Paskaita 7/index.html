@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Forma</title>
+</head>
+
+<body>
+    <div class="form_container">
+        <form action="register.php" method="post">
+            <label for="edt_vardas">vardas</label>
+            <input type="text" name="edt_vardas" placeholder="vartotojo vardas" minlength="3" maxlength="35" required
+                title="Minimum 3 simboliai" oninvalid="this.setCustomValidity('Brolau, suvesk vardą')"
+                oninput="this.setCustomValidity('')">
+
+            <label for="edt_email">El. paštas</label>
+            <input type="email" name="edt_email" placeholder="El. pašto adresas" minlength="6" maxlength="35" required
+                oninvalid="this.setCustomValidity('Brolau, suvesk email')" oninput="this.setCustomValidity('')">
+
+            <label for="edt_password">Slaptažodis</label>
+            <input type="password" name="edt_password" placeholder="Slaptažodis" minlength="8" maxlength="35" required
+                oninvalid="this.setCustomValidity('Brolau, suvesk pwd')" oninput="this.setCustomValidity('')">
+
+            <label for="edt_conf_password">Slaptažodis</label>
+            <input type="password" name="edt_conf_password" placeholder="Pakartoti slaptažodį" minlength="8"
+                maxlength="35" required oninvalid="this.setCustomValidity('Brolau, suvesk pwd2')"
+                oninput="this.setCustomValidity('')">
+
+
+            <input type="radio" name="rb_html" value="Edijs">
+            <label for="rb_html">HTML</label><br>
+
+            <label for="edt_amzius">Amžius</label>
+            <input type="number" name="edt_amzius" placeholder="0" min="0" max="135">
+
+            <label for="cb_prisiminti">Prisiminti mane</label>
+            <input type="checkbox" name="cb_prisiminti">
+
+            <input type="submit" value="Registruotis">
+        </form>
+    </div>
+</body>
+
+</html>

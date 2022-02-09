@@ -1,0 +1,71 @@
+/*body{background-color: cornflowerblue;}*/
+
+nav{
+    text-align: center;
+    /* Šešėlis */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: calc(80%+ 8rem);
+    margin: 0 auto 2rem auto;
+}
+
+.my_logo {
+  width: 100%;
+  height: auto;
+  max-width: 400px;  
+  object-fit: cover;
+}
+
+.my_links {
+    padding: 1rem;
+
+}
+
+.my_link {
+    /* Nuorodų teksto spalva */
+    color:black;
+    /* Nuimame underline */
+    text-decoration: none;
+    /* Tarpelis tarp nuorodų */
+    padding: 0.5rem;
+}
+
+.card_row {
+    text-align: center;
+    display: table;
+    margin-bottom: 1rem;
+}
+
+.card_column {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: 23.33%;
+    padding: 1.5rem;
+}
+
+.category{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7rem;
+    float: right;
+}
+
+.cart_title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.my_img {
+    width: 100%;
+    max-height: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+.card_text {
+  text-align: left;
+  word-wrap: break-word; /* kad tekstas neišlystų už konteinerio ribų */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card_column:nth-child(2){
+  margin-right: 2rem;
+  margin-left: 2rem;
+}

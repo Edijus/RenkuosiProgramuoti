@@ -1,0 +1,102 @@
+.my_header {
+  width: 80%;
+  height: 200px;
+  background-color: #17a2b8;
+  margin: 0 auto;
+}
+
+.my_container {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  display: block;
+  overflow: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+}
+
+.row {
+  display: block;
+  margin-top: 2rem;
+}
+
+.box1 {
+  display: block;
+  height: auto;
+  width: 49%;
+  background-color: bisque;
+  float: left;
+  margin-bottom: 2rem;
+}
+
+.box2 {
+  display: block;
+  height: auto;
+  width: 49%;
+  background-color: bisque;
+  float: right;
+  margin-bottom: 2rem;
+}
+
+.my_img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  float: left;
+  display: block;
+  margin-right: 2rem;
+}
+
+.my_text {
+  text-align: justify;
+  font-size: 1.2rem;
+  margin: 2rem;
+  word-wrap: break-word;
+}
+
+.read_more {
+  display: block;
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Tritaškis */
+}
+
+table {
+  /* Sujungia lentelės celes/rėmelius */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Visiems išvardintiems elementams */
+th,
+td {
+  border: 1px solid black;
+  padding: 1rem;
+  text-align: left;
+}
+
+/* Nurodom kelią */
+tfoot tr td:nth-child(1) {
+  color: brown;
+  text-align: right;
+}
+
+/* Kelią galima nurodyti ir su > */
+div > p:nth-child(2) {
+  color: darkorchid;
+}
+
+div > p:nth-child(n + 4) {
+  color: green;
+}
+
+/* Nuspalvina kas antrą stulpelį */
+tfoot tr td:nth-child(odd) {
+  background-color: darkgrey;
+}
+
+tr:nth-child(even) {
+  background-color: mediumaquamarine;
+}

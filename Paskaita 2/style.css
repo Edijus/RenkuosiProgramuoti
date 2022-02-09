@@ -1,0 +1,50 @@
+div {
+    text-align: right;
+    /* Konteinerio spalva */
+    background-color: blanchedalmond;
+    width: 50%;
+    /* Konteineris centre */
+    margin: auto;
+}
+
+h1 {
+    /* Kai tekstas pasiekia konteinerio kraštą, sulaužyti žodį, 
+    kad jis neišliptų iš konteinerio */
+    word-wrap: break-word;
+    text-align: center;
+}
+
+p {
+    word-wrap: break-word;
+    text-align: left;
+    /* Kiek atitraukti nuo krašto */
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.klases_pavadinimas {
+    /* Atvaizduoja HTML elementą eilute  */
+    display: inline-block;
+    background-color: royalblue;
+}
+
+a {
+    margin-right: 1rem;
+}
+
+.box1 {
+    text-align: left;
+    display: block;
+    background-color: salmon;
+    width: 200px;
+    height: 150px;
+}
+
+.box2 {
+    text-align: left;
+    display: block;
+    background-color: springgreen;
+    width: 200px;
+    height: 150px;
+    float: right;
+}

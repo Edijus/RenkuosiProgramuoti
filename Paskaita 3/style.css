@@ -1,0 +1,58 @@
+body,
+html {
+    margin: 0;
+    padding: 0
+}
+
+.default-box {
+    width: 30%;
+    background-color: tomato;
+}
+
+.box1 {
+    /* Elementai eina vienas po kito eilutėje */
+    display: table-cell;
+    background-color: rgb(233, 36, 36);
+    width: 30%;
+}
+
+.box2 {
+    display: table-cell;
+    width: 30%;
+}
+
+.box3 {
+    display: table-cell;
+    width: 30%;
+    background-color: aqua;
+}
+
+.box4 {
+    /* block - vienas stulpelis, sekantis elementas apačioje */
+    display: block;
+    width: 30%;
+}
+
+.box5 {
+    display: block;
+    width: 30%;
+    background-color: rgb(241, 178, 222);
+}
+
+.box6 {
+    display: block;
+    width: 30%;
+    background-color: aqua;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.box1h1 {
+    font-size: 1rem;
+}
+
+.kita_klase {
+    font-weight: bold;
+}
