@@ -1,2 +1,2 @@
-# ReknuosiProgramuoti
+# RenkuosiProgramuoti
 CodeAcademy
