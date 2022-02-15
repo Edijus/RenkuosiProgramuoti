@@ -1,0 +1,118 @@
+table {
+  width: 80%;
+  margin: 0.5rem auto;
+  border-collapse: collapse;
+}
+
+th,
+tr {
+  background-color: rgb(255, 255, 255);
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.form_container{
+    width: 80%;
+    margin: 1rem auto 0.5rem;
+}
+
+input[type="text"]{
+    width: 90%;
+    float: left;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+}
+
+input[type="submit"]{
+    float: left;
+    width: 10%;
+    padding: 0.5rem;
+    background-color: #007bff;
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 0.2rem;
+}
+
+input[type="submit"]:hover{
+     background-color: #045dbb;
+}
+
+form {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    input[type="text"]{
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    input[type="submit"]{
+        display: block;
+        float: none;
+        width: 100%;
+    }
+  /* Padarom, kad table nebūtų kaip table */
+  table,
+  thead,
+  th,
+  tbody,
+  tr,
+  td {
+    display: block;
+  }
+  thead,
+  th {
+    display: none;
+  }
+  tr:hover {
+    background-color: unset;
+  }
+  td:hover {
+    background-color: #ddd;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td::before {
+    position: absolute;
+    left: 1rem;
+    white-space: nowrap;
+  }
+
+  td:nth-child(1)::before {
+    content: "Kategorija";
+  }
+
+  td:nth-child(2)::before {
+    content: "Prekės ženklas";
+  }
+
+  td:nth-child(3)::before {
+    content: "Modelis";
+  }
+
+  td:nth-child(4)::before {
+    content: "Kiekis";
+  }
+
+  td:nth-child(5)::before {
+    content: "Kaina";
+  }
+}
