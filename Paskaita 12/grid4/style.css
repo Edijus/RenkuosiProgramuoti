@@ -1,0 +1,35 @@
+.my_container {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: auto;
+  grid-template-areas: "header header header header"
+  "sidebarX main main main"
+  "footer footer footer footer";
+  grid-gap: 1rem;
+}
+
+.my_container div:nth-child(even) {
+  background-color: royalblue;
+  padding: 1rem;
+}
+
+.my_container div:nth-child(odd) {
+  background-color: rgb(70, 80, 144);
+  padding: 1rem;
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.sidebar {
+  grid-area: sidebarX;
+}
+
+.footer {
+  grid-area: footer;
+}

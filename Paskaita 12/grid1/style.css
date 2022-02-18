@@ -1,0 +1,16 @@
+.my_container{
+    display: grid;
+    grid-template-columns: 20% 70%;
+    grid-gap 1rem;
+}
+
+.my_container div:nth-child(even){
+    background-color: royalblue;
+    padding: 1rem;
+}
+
+.my_container div:nth-child(odd) {
+background-color: rgb(70, 80, 144);    
+padding: 1rem;
+}
+
