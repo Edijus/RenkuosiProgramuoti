@@ -1,0 +1,79 @@
+.my_container {
+    display: grid;
+    width: 80%;
+    /* Konteineris puslapio centre horizontaliai */
+    margin: 0 auto;
+    grid-template-columns: auto;
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas:
+      "navbar navbar navbar navbar"
+      "big_image1 big_image1 small_image2 small_image7"
+      "big_image1 big_image1 small_image3 small_image7"
+      "small_image4 small_image5 small_image5 small_image7"
+      "small_image6 small_image8 small_image9 small_image7"
+      ;
+    grid-gap: 1rem;
+  }
+  
+
+.navbar{
+    min-height: 50px;
+    grid-area: navbar;
+    background-color: rgb(130, 179, 202);
+}
+
+.big_image1{
+    height: 200px;
+    grid-area: big_image1;
+    background-color: rgb(39, 62, 73);
+}
+
+.small_image2{
+    height: 100px;
+    grid-area: small_image2;
+    background-color: rgb(11, 37, 49);
+}
+
+.small_image3{
+    height: 80px;
+    grid-area: small_image3;
+    background-color: rgb(158, 173, 180);
+}
+
+.small_image4{
+    height: 80px;
+    grid-area: small_image4;
+    background-color: rgb(31, 49, 58);
+}
+
+.small_image5{
+    height: 80px;
+    grid-area: small_image5;
+    background-color: rgb(158, 173, 180);
+}
+
+.small_image6{
+    height: 80px;
+    grid-area: small_image6;
+    background-color: rgb(158, 173, 180);
+}
+
+.small_image7{
+    height: 400px;
+    grid-area: small_image7;
+    background-color: rgb(158, 173, 180);
+}
+
+.small_image8{
+    height: 80px;
+    grid-area: small_image8;
+    background-color: rgb(158, 173, 180);
+}
+
+.small_image9{
+    text-align: center;
+    line-height: 100px;
+    height: 80px;
+    grid-area: small_image9;
+    background-color: rgb(158, 173, 180);
+}

@@ -1,0 +1,88 @@
+.my_container {
+  display: grid;
+  width: 70%;
+  /* Konteineris puslapio centre horizontaliai */
+  margin: 0 auto;
+  grid-template-columns: auto;
+  grid-auto-rows: minmax(150px, auto);
+  grid-template-areas:
+    "navbar navbar navbar navbar"
+    "big_box big_box big_box big_box"
+    "big_box big_box big_box big_box"
+    "small_box1 small_box1 small_box1 small_box1"
+    "small_box2 small_box2 small_box2 small_box2"
+    "small_box3 small_box3 small_box3 small_box3"
+    "small_box4 small_box4 small_box4 small_box4"
+    "footer footer footer footer";
+  row-gap: 1rem;
+}
+
+.navbar {
+  grid-area: navbar;
+  background-color: rgb(111, 96, 175);
+}
+
+.big_box {
+  grid-area: big_box;
+  background-color: rgb(35, 21, 97);
+}
+
+.small_box1 {
+  grid-area: small_box1;
+  background-color: rgb(128, 223, 124);
+}
+
+.small_box2 {
+  grid-area: small_box2;
+  background-color: rgb(202, 196, 114);
+}
+
+.small_box3 {
+  grid-area: small_box3;
+  background-color: rgb(194, 129, 55);
+}
+
+.small_box4 {
+  grid-area: small_box4;
+  background-color: rgb(50, 82, 88);
+}
+
+.footer {
+  grid-area: footer;
+  background-color: rgb(108, 226, 247);
+}
+
+.my_container div {
+  text-align: center;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+/* Vidutinio dydžio įrenginiams */
+@media only screen and (min-width: 768px) {
+  .my_container {
+    grid-template-areas:
+      "navbar navbar navbar navbar"
+      "big_box big_box big_box big_box"
+      "big_box big_box big_box big_box"
+      "small_box1 small_box1 small_box1 small_box1"
+      "small_box2 small_box2 small_box3 small_box3"
+      "small_box4 small_box4 small_box4 small_box4"
+      "footer footer footer footer";
+    gap: 1rem;
+  }
+}
+
+/* Planšetės */
+@media only screen and (min-width: 992px) {
+  .my_container {
+    grid-template-areas:
+      "navbar navbar navbar navbar"
+      "big_box big_box big_box small_box1"
+      "big_box big_box big_box small_box2"
+      "big_box big_box big_box small_box3"
+      "small_box4 small_box4 small_box4 small_box4"
+      "footer footer footer footer";
+    gap: 1rem;
+  }
+}
