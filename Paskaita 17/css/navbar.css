@@ -1,0 +1,27 @@
+nav {
+  background-color: #2d5c99;
+  list-style: none;
+  padding: 2rem;
+}
+
+nav li {
+  display: block;
+  margin: 0.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+nav a:hover {
+  color: #2e1c05;
+}
+
+@media only screen and (min-width: 768px) {
+  nav li {
+    display: inline-block;
+  }
+}
+/*# sourceMappingURL=navbar.css.map */
