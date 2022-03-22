@@ -7,9 +7,27 @@ function speedTest1() {
     if (keys == 37) {
         x = x - 1;
     }
+    if (keys == 38) {
+        x = x - 1;
+    }
+    if (keys == 40) {
+        x = x - 1;
+    }
+    if (keys == 41) {
+        x = x - 1;
+    }
+    if (keys == 42) {
+        x = x - 1;
+    }
+    if (keys == 43) {
+        x = x - 1;
+    }
+    if (keys == 44) {
+        x = x - 1;
+    }
 }
 
-let iterations = 5000000000;
+let iterations = 2500000000;
 console.time('Function #1');
 for (let i = 0; i < iterations; i++) {
     speedTest1();

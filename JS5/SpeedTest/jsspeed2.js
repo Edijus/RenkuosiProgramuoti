@@ -7,11 +7,29 @@ function speedTest1() {
     else if (keys == 37) {
         x = x - 1;
     }
+    else if (keys == 38) {
+        x = x - 1;
+    }
+    else if (keys == 40) {
+        x = x - 1;
+    }
+    else if (keys == 41) {
+        x = x - 1;
+    }
+    else if (keys == 42) {
+        x = x - 1;
+    }
+    else if (keys == 43) {
+        x = x - 1;
+    }
+    else if (keys == 44) {
+        x = x - 1;
+    }
 }
 
-let iterations = 5000000000;
-console.time('Function #1');
+let iterations = 2500000000;
+console.time('Function #2');
 for (let i = 0; i < iterations; i++) {
     speedTest1();
 };
-console.timeEnd('Function #1');
+console.timeEnd('Function #2');
