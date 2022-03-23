@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/FormosApp/style/style.css">
+    <script src="/FormosApp/js/js6.js" defer></script>
+    <title>JS6</title>
+</head>
+
+<body>
+    <h1>Pradžia</h1>
+    <a href="/FormosApp/templates/items.html">Prekės</a>
+
+    <div class="js6_container">
+        <form action="/data.php" method="post" id="js6_myForm">
+            <label for="preke">Prekė</label>
+            <input type="text" name="preke" maxlength="50" minlength="2">
+
+            <label for="kaina" min="0" max="10000">Kaina</label>
+            <input type="number" name="kaina">
+
+            <input type="submit" value="Įkelti" class="js6_add">
+        </form>
+        <button id="1" onclick="getId(this)">1</button>
+        <button id="2" onclick="getId(this)">2</button>
+        <button id="3" onclick="getId(this)">3</button>
+        <button id="4" onclick="getId(this)">4</button>
+        <button id="5" onclick="getId(this)">5</button>
+
+        <form class="js6_myForm2" method="get">
+            <label for="result">Result</label>
+           <input type="text" name="result" value="">
+        </form>
+
+        <h1 id="js6_out" name="edijs"></h1>
+    </div>
+</body>
+
+</html>

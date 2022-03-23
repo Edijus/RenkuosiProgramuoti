@@ -1,0 +1,40 @@
+.box{
+    background-color: bisque;
+    width: 50px;
+    height: 50px;
+}
+
+.js6_container{
+    width: 60%;
+  margin: 0 auto;
+}
+
+label{
+    display: block;
+    margin-top: 1rem;
+}
+
+form > input{
+    display: inline-block;
+    padding: 0.8rem;
+    /*margin-top: 1rem;*/
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.js6_myForm2{
+    margin-top: 2rem;
+}
+
+.js6_add{
+    margin-top: 1rem;
+    background-color: rgb(53, 93, 168);
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+}
+
+.js6_add:hover{
+     background-color: rgb(44, 108, 226);
+}
