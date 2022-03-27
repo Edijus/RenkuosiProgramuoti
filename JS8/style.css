@@ -1,0 +1,24 @@
+*{
+  box-sizing: border-box;
+}
+
+.js8_email{
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type=submit]{
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.js8_emailLabel{
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.js8_Msg{
+    background-color: bisque;
+    padding: 1rem;
+    display: none;
+}
