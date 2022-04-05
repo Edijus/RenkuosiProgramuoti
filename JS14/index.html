@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js14_auto.json"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>JS14</title>
+</head>
+
+<body>
+
+    <form action="">
+        <input type="text">
+        <input type="hidden" value="testas">
+    </form>
+
+    <table>
+        <thead></thead>
+        <tr></tr>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const js14_auto = Automobiliai.sort((a, b) => a.Marke.localeCompare(b.Marke));
+
+        const js14_Json = JSON.stringify(Automobiliai);
+        const js14_Obj = JSON.parse(js14_Json);
+
+        js14_Obj.forEach((item, index) => {
+            console.log(item.Marke);
+        });
+
+        const js14_numbers = [15, -2, 6, 0, 5, 25];
+        js14_numbers.sort(); 
+        console.log(js14_numbers);
+        function sortMyNumbers(a, b){
+           return  a-b;
+        };
+
+        js14_numbers.sort(sortMyNumbers); 
+        console.log(js14_numbers);
+
+        Automobiliai.sort((kainaA, kainaB) => kainaA.Kaina - kainaB.Kaina);
+        console.log(Automobiliai);
+
+
+        const js14_auto2 = Automobiliai.sort((a, b) => a.Kebulo_tipas.localeCompare(b.Kebulo_tipas));
+        js14_auto2.forEach((item, index) => {
+            console.log(item.Kebulo_tipas);
+        });
+
+        const js14_ManoKainos = [10, 15, 80, 2, 7, -2];
+        const js14_suma = js14_ManoKainos.reduce((a, c) =>a+c);
+        console.log(js14_suma);
+
+        for(let x = 0; x < js14_Obj.length; x++){
+          console.log(js14_Obj[x]);
+          console.log(js14_Obj[x].Kuro_tipas[0]);
+          document.querySelector("tbody").innerHTML +=
+          `<tr>
+             <td>
+                <select id="js14_cars">
+                  <option>${js14_Obj[x].Kuro_tipas[0]}</option>
+                  <option>${js14_Obj[x].Kuro_tipas[1]}</option>
+                </select>
+            </td>
+            <td>${js14_Obj[x].Marke}</td>
+            <td><select id="js14_cars2">
+                  <option>${js14_Obj[x].Modelis[0]}</option>
+                  <option>${js14_Obj[x].Modelis[1]}</option>
+                </select>
+            </td>
+            <td><select id="js14_cars3">
+                  <option>${js14_Obj[x].Pavarų_dežė[0]}</option>
+                  <option>${js14_Obj[x].Pavarų_dežė[1]}</option>
+                </select>
+            </td>
+            <td><select id="js14_cars4">
+                  <option>${js14_Obj[x].Kuro_tipas[0]}</option>
+                  <option>${js14_Obj[x].Kuro_tipas[1]}</option>
+                  <option>${js14_Obj[x].Kuro_tipas[2]}</option>
+                </select>
+            </td>
+            <td>${js14_Obj[x].Kebulo_tipas}</td>
+            <td>${js14_Obj[x].Kaina}</td>
+            <td><select id="js14_cars5">
+                  <option>${js14_Obj[x].Stovis[0]}</option>
+                  <option>${js14_Obj[x].Stovis[1]}</option>
+                </select>
+            </td>
+          </tr>
+          `
+        };
+
+        const cars = [5, 10, 20, 4, 11, 13];
+        console.log(cars.reduce((a,v) => a > v ? a : v));
+    </script>
+</body>
+
+</html>
