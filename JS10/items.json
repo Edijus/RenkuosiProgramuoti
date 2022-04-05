@@ -1,0 +1,32 @@
+const js10_prekes =
+[
+    {
+        "pavadinimas": "Televizorius",
+        "kaina": 1256.00,
+        "kiekis": 20,
+        "akcija": 50
+    },
+    {
+        "pavadinimas": "Arbatinukas",
+        "kaina": 16.00,
+        "kiekis": 2,
+        "akcija": 30
+    },
+    {
+        "pavadinimas": "Telefonas",
+        "kaina": 165.00,
+        "kiekis": 5,
+        "akcija": 10
+    },
+    [
+        {
+            "spalva": "balta"
+        },
+        {
+            "spalva": "mėlyna"
+        },
+        {
+            "spalva": "geltona"
+        }
+    ]
+];
