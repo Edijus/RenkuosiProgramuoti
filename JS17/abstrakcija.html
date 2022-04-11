@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="visi"></h1>
+    <h1 id="bonus"></h1>
+
+    <script>
+        function Darbuotojai(name, age, salary){
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+            let bonus = 1500;
+
+            let DarbuotojoPriedas = function(){
+                document.getElementById("bonus").textContent = "Priedas " + bonus;
+            }
+
+            this.VisiDarbuotojai = function(){
+                document.getElementById("visi").textContent = "Vardas " + this.name + " metai " + this.age + " alga " + this.salary;
+                DarbuotojoPriedas();
+            }
+        }
+
+        let companyWorkers = new Darbuotojai("Jonas", "45", 2000);
+        companyWorkers.VisiDarbuotojai();
+        companyWorkers.bonus = 2050; // Neveikia, nes apsaugota
+        companyWorkers.DarbuotojoPriedas();
+    </script>
+</body>
+</html>
