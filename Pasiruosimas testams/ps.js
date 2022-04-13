@@ -38,3 +38,22 @@ class TCar{
 
 let _Car = new TCar(Automobiliai[0]);
 console.log(_Car.Make + " " + _Car.Model);
+
+
+
+function isNumber(char) {
+    if (typeof char !== 'string') {
+        return true;
+    }
+
+    if (char.trim() === '') {
+        return false;
+    }
+
+    return !isNaN(char);
+}
+
+function isAlpha(str) {
+    return /^[a-zA-Z]+$/.test(str);
+}
+
