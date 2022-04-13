@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js19.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="js19_readCookie"></h1>
+    <p id="js19_myDate"></p>
+    
+    <button id="JS19_addCookie">AddCokie</button>
+    <button id="JS19_deleteCookie">deleteCokie</button>
+<br>
+    <button id="js19_AddLocalStorage">AddLocalStorage</button>
+    <button id="js_deleteLocalStorage">deleteLocalStorage</button>
+    <br>
+    <button id="js19_AddSessionStorage">AddSessionStorage</button>
+
+    <script>
+        const myDate = new Date();
+        let newTime = myDate;
+
+        newTime.setDate(myDate.getDate() + 10);
+
+        //console.log(newTime);
+        document.getElementById("js19_myDate").textContent = newTime.toUTCString();
+
+        document.getElementById("JS19_addCookie").addEventListener("click", () => {
+            document.cookie = "vardas=Jonas; expires=" + newTime.toUTCString() + "; path=/;";
+            document.location.reload();
+        })
+
+        document.getElementById("JS19_deleteCookie").addEventListener("click", () => {
+            document.cookie = "vardas=Jonas; expires=Thu, 18 Dec 1990 12:00:00 GMT";
+            document.location.reload();
+        })
+
+        document.getElementById("js19_readCookie").textContent = document.cookie;
+
+
+        document.getElementById("js19_AddLocalStorage").addEventListener("click", () => {
+            localStorage.setItem("BMW", "Juoda");
+        })
+
+        document.getElementById("js_deleteLocalStorage").addEventListener("click", () => {
+            localStorage.removeItem("BMW");
+        })
+
+        console.log(localStorage.getItem("BMW"));
+
+        document.getElementById("js19_AddSessionStorage").addEventListener("click", () => {
+            sessionStorage.setItem("Spalva", "Mėlyna");
+        })
+
+        
+    </script>
+</body>
+
+</html>
