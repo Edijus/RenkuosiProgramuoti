@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js20.js" defer></script>
+    <style>
+        .kitaforma {
+            display: none;
+        }
+
+        .forma {
+            display: block;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="showForm" class="forma">
+        <form action="#">
+            <label for="name">Vardas</label>
+            <input type="text" id="name">
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+    <div id="showButton" class="kitaforma">
+        <h1 id="getName"></h1>
+        <button id="js20_delCookie">DeleteCookie</button>
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", (e) => {
+            const name = document.getElementById("name").value;
+            console.log(name);
+
+            document.cookie = "vardas=" + name + ";";
+            console.log(document.cookie);
+            if (document.cookie =  "vardas=" + name + ";") {
+                document.getElementById("showButton").style.display = "block";
+                document.getElementById("showForm").style.display = "none";
+                document.getElementById("getName").innerText = document.cookie.substring(7);
+            }else{
+                document.getElementById("showButton").style.display = "none";
+                document.getElementById("showForm").style.display = "block";
+            }
+        });
+
+        document.getElementById("js20_delCookie").addEventListener("click", ()=>{
+            document.cookie = "test=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            document.location.reload();
+        })
+
+    </script>
+
+    <!--
+    <script>
+        const promise1 = Promise.resolve("Skambinu");
+        const promise2 = 20;
+        const promise3 = new Promise((resolve, reject) => setTimeout(resolve, 2000, "Sujungta"));
+        Promise.all([promise1, promise2, promise3]).then((values) => console.log(values));
+
+        function getResponse(){
+            return new Promise(resolve=>{
+                setTimeout(() => {
+                    resolve("data loaded");
+                }, 2000);
+            });
+        };
+
+        //getResponse();
+
+        async function js20_init(){
+            console.log("data loading...");
+            const result = await getResponse();
+            console.log(result);
+        };
+
+        js20_init();
+        console.log("Viskas");
+    </script>-->
+</body>
+
+</html>
