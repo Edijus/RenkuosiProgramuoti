@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js21.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="manoTxt"></h1>
+    <div id="users"></div>
+
+    <script>
+
+        function getTxt() {
+            fetch("manoVardas.txt").then(js21_res => {
+                return js21_res.text();
+            }).then(js21_data => {
+                console.log(js21_data)
+                document.getElementById("manoTxt").innerText = js21_data
+            });
+        }
+
+        function getJSON() {
+            fetch("users.json").then(js21_jsonResp => js21_jsonResp.json()).then(js21_jsonData => {
+                let output = "";
+                js21_jsonData.forEach((item, index) => {
+                    output += `<h2>${item.id} ${item.name} ${item.email}</h2>`;
+                });
+                document.getElementById("users").innerHTML = output;
+            })
+        }
+
+        function getApi() {
+            fetch("https://jsonplaceholder.typicode.com/posts").then(js21_getApiResp => {
+                if (js21_getApiResp.ok) {
+                    console.log("Duomenys gauti");
+                    return js21_getApiResp.json();
+                } else {
+                    console.log("Kažkas negerai");
+                }
+            }).then(js21_getApiData => {
+                let output = "<h2>visi postai</h2>";
+                js21_getApiData.forEach((item, index) => {
+                    output += `<div>
+                        Įrašo ID: ${item.id}
+                        Vartotojas: ${item.userId} 
+                        <h2>${item.title}</h2> 
+                        <p>${item.body}</p>
+                    </div>`;
+                });
+                document.getElementById("users").innerHTML = output;
+            }).catch(err => console.log("nepavyko", err))
+        }
+
+        //fetch("").then().then().catch();
+    </script>
+</body>
+
+</html>

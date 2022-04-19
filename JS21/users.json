@@ -1,0 +1,20 @@
+[
+{
+    "id":1,
+    "name":"Jonas",
+    "email":"jonas@testas.lt"
+},
+{
+    "id":2,
+    "name":"Tomas",
+    "email":"tomas@testas.lt"
+},{
+    "id":3,
+    "name":"Marius",
+    "email":"marius@testas.lt"
+},{
+    "id":4,
+    "name":"Kęstas",
+    "email":"kestas@testas.lt"
+}
+]
