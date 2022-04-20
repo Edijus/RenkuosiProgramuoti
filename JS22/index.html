@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS22</title>
+</head>
+
+<body>
+    <script>
+        function CreateHeaderCell(ARow, ATitle) {
+            let headerCell = document.createElement("TH");
+            headerCell.innerText = ATitle;
+            ARow.appendChild(headerCell);
+        }
+
+        function CreateCell(ARow, ATitle) {
+            let cell = ARow.insertCell(-1);
+            cell.innerText = ATitle;
+        }
+
+        let cbVIP = document.createElement("INPUT");
+        cbVIP.setAttribute("type", "checkbox");
+        cbVIP.id = "ToggleVIP";
+        document.body.appendChild(cbVIP);
+
+        let lblVIP = document.createElement("Label");
+        lblVIP.setAttribute("for", cbVIP.id);
+        lblVIP.innerText = "Toggle VIP";
+        document.body.appendChild(lblVIP);
+
+        cbVIP.addEventListener("change", function(){OnFilterClick()});
+
+        let table = document.createElement("table");
+
+        let form = document.createElement("form");
+        let nameFilter = document.createElement("input");
+        nameFilter.setAttribute("type", "search");
+        let filterButton = document.createElement("button");
+        form.append(nameFilter);
+        form.append(filterButton);
+        filterButton.innerText = "Filter by name";
+        filterButton.addEventListener("click", OnFilterClick);
+        document.body.appendChild(form);
+
+        function OnFilterClick(){
+            FetchData(nameFilter.value);
+        }
+
+        function FetchData(ANameFilter) {
+            fetch('https://magnetic-melon-yam.glitch.me')
+                .then(tableJson => tableJson.json())
+                .then(getData => {
+                    table.innerHTML = "";
+                    let row = table.insertRow(-1);
+
+                    CreateHeaderCell(row, "id");
+                    CreateHeaderCell(row, "image");
+                    CreateHeaderCell(row, "city");
+                    CreateHeaderCell(row, "fav_color");
+                    CreateHeaderCell(row, "first name");
+                    CreateHeaderCell(row, "last name");
+
+                    getData.forEach((item, index) => {
+                        let row = table.insertRow(-1);
+
+                        CreateCell(row, item.id);
+
+                        let cell = row.insertCell(-1);
+                        cell.innerHTML = `<img src="${item.image}" alt="${item.name}">`;
+
+                        CreateCell(row, item.city);
+                        CreateCell(row, item.fav_color);
+
+                        let firstName = item.name.substring(0, item.name.lastIndexOf(" "));
+                        let lastName = item.name.substring(firstName.length, item.name.length);
+
+                        CreateCell(row, firstName);
+                        CreateCell(row, lastName);
+
+                        if (cbVIP.checked) {
+                            if (!item.vip) {
+                                row.style.display = "none";
+                            }
+                        }
+
+                        if (row.style.display != "none"){
+                            let lowerName = item.name.toLowerCase();
+                            let lowerFilter = ANameFilter.toLowerCase();
+                            if (!lowerName.includes(lowerFilter)){
+                                row.style.display = "none";
+                            }
+                        }
+                    })
+                    document.body.appendChild(table);
+                })
+                .catch(err => console.log("nepavyko", err))
+        }
+        FetchData("");
+    </script>
+</body>
+
+</html>
