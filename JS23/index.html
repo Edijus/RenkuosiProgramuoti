@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .title,
+        .bodytext {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="submit"] {
+            margin-top: 1 rem;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form id="addpost" action="#">
+        <label for="title">Antraste</label>
+        <input id="title" type="text" class="title">
+        <textarea name="body" id="body" cols="30" rows="10" class="bodytext"></textarea>
+        <input type="submit" value="addpost">
+    </form>
+
+    <script>
+
+        //pasiemam forma su id
+        const js23_mypost = document.getElementById("addpost");
+        //sukuriam funkcija kuri paspaudus mygtuka irasys duomenis i api (fake data)
+        js23_mypost.addEventListener("submit", (event) => {
+            //sustabdom forma nuo perkrovimo
+            event.preventDefault();
+            //pasiimam antrastes verte
+            let js23_title = document.getElementById("title").value;
+            //cia tokiu budu mes pasialertiname reiksme kuri irasyta i antraste po to kai paspaudziama submit
+            let js23_body = document.getElementById("body").value;
+            //su alertu pasitikrinam ar veikia musu formos duomenu padavimas
+            //alert(title+body);
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                //kad mes įkeliam - postinam info
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json, text/plain',
+                    'Content-Type': 'application/json'
+                },
+                //dedam i body: i title dedam kazkoki title ir i body dedam kazka body
+                body: JSON.stringify({ title: js23_title, body: js23_body })
+            })
+                .then(js23_resp => js23_resp.json())
+                .then(js23_data => console.log(js23_data))
+        });
+
+
+    </script>
+
+</body>
+
+</html>
