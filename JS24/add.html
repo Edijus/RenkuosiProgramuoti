@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="add.js" defer></script>
+    <title>Add</title>
+</head>
+
+<body>
+    <form id="form">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Img</label><br>
+            <input type="text" class="form-control" id="exampleFormControlInput1"
+                placeholder="https://s1.15min.lt/images/photos/2020/02/05/original/vilniaus-pilies-g-parduodamas-10-kv-m-ploto-butas-5e3ad52eee51a.jpg">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput2">Price, EUR</label><br>
+            <input type="number" class="form-control" id="exampleFormControlInput2" placeholder="50000">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label><br>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="Anything you would like to say?"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">City</label><br>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Vilnius</option>
+                <option>Kaunas</option>
+                <option>Šiauliai</option>
+                <option>Panevėžys</option>
+                <option>Klaipėda</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Add property</button>
+
+    </form>
+</body>
+
+</html>
