@@ -1,0 +1,16 @@
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    flex: 1 0 21%; 
+    margin: 5px;
+    height: 280px;
+    max-width: 24%;
+  }
+
+  card,img{
+      max-height: 155px;
+  }
+

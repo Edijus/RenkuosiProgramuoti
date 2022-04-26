@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js25.js" defer></script>
+    <title>JS25</title>
+</head>
+
+<body>
+
+    <button id="delete_post">Delete post</button>
+    <script>
+        document.getElementById("delete_post").addEventListener("click", deletePost);
+
+       fetch('https://olive-bead-glazer.glitch.me/')
+       .then(js25_Response => js25_Response.json()
+            ).then(js25_Data => console.log(js25_Data))
+
+        function deletePost(e){
+            e.preventDefault();
+            const myDataObject = '{"brand":"BMW","model":"i8"}';
+
+            fetch('https://olive-bead-glazer.glitch.me/',{
+                method:"DELETE",
+                //mode: "no-cors",
+                headers: {'Content-Type': 'application/json',
+            'cache-control':'no-cache'},
+                body: JSON.stringify(myDataObject)
+            }).then(js25_Response => js25_Response.json()
+            ).then(js25_Data => console.log(js25_Data))
+        }
+    </script>
+</body>
+
+</html>
