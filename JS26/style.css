@@ -1,0 +1,98 @@
+html,
+body {
+  margin: 0px;
+  background: #E6EBEE;
+}
+
+.card {
+  background: #03b4e0;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  bottom: 20px;
+  left: 30px;
+  border-radius: 3%;
+  display: flex;
+}
+
+.profile {
+  /*background: red;*/
+  width: 30%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 400px;
+  color: white;
+}
+
+.profile_picture {
+  border-radius: 50%;
+  max-width: 200px;
+  min-height: 100px;
+}
+
+.exp_skills {
+  background: white;
+  width: 70%;
+  border-radius: 3%;
+}
+
+.profile_bottom {
+  position: relative;
+  height: 100%;
+}
+
+.profile_bottom .all_rights {
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+}
+
+.margin20 {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.exp_year{
+    min-width: 30%;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.exp_year p {
+    color: gray;
+}
+
+.exp_description p {
+    color: gray;
+}
+
+.single_exp{
+    display: flex;
+}
+
+.blue_color{
+    color: #03b4e0;
+}
+
+.skill_div{
+    display: flex;
+}
+
+.skill_name{
+    min-width: 95%;
+    font-weight: bold;
+}
+
+.skill_div p{
+    margin-bottom: 1px;
+}
+
+progress{
+    min-width: 100%;
+}
+
+.skill_percent{
+    color: gray;
+}
