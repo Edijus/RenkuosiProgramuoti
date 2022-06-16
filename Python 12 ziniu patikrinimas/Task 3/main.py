@@ -4,8 +4,16 @@
 # ir grąžins visus jo "values" list'e.
 
 audi = {
-  "make": 'audi',
-  "model": 'A6',
-  "year": 2005,
-  "color": 'white',
+    "make": 'audi',
+    "model": 'A6',
+    "year": 2005,
+    "color": 'white',
 }
+
+
+def show_object_values(make: dict) -> list:
+    return list(make.values())
+
+
+print(type(show_object_values(audi)))
+print(show_object_values(audi))
