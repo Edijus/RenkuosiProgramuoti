@@ -1,11 +1,15 @@
 """
 Uzduotys:
 1.(3) Surasti, isvardinti ir pataisyti visas projekte rastas klaidas zemiau, uz bent 5 rastas ir pataisytas pilnas balas:
-    a)
-    b)
-    c)
-    d)
-    e)
+    a) Registruojant naują vartotoją trūko pavardės lauko. DB jo reikalavo.
+    b) Registruojant naują varototją gaunama AttributeError: 'User' object has no attribute 'is_active' klaida
+    c) Paspaudus "Account Information" kyla jinja2.exceptions.UndefinedError: 'form_in_html' is undefined klaida
+    d) Neveikė vartotojo atsijungimas
+    e) Neveikė prisijungimas su registruotu vartotoju (Method Not Allowed)
+    f) Neveikė prisijungimas su registruotu vartotoju (User or password does not match)
+    g) Atnaujinant registruoto vartotojo informaciją neteisingai panaudotas POST HTTP metodas
+    h) Neteisingai užpildomi numatytieji duomenys "Account Information" puslapyje
+    i) user first_name tarp DB buvo integer tipo
     ...
 2.(7) Praplesti aplikacija i bibliotekos resgistra pagal apacioje surasytus reikalavimus:
     a)(1) Naudojant SQLAlchemy klases, aprasyti lenteles Book, Author su pasirinktinais atributais su tinkamu rysiu -
@@ -40,8 +44,8 @@ from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_bcrypt import Bcrypt
-from flask_login import AnonymousUserMixin, LoginManager, login_user, current_user, login_required
-from flask_sqlalchemy import SQLAlchemy
+from flask_login import AnonymousUserMixin, LoginManager, login_user, current_user, login_required, UserMixin, logout_user
+from flask_sqlalchemy import SQLAlchemy, get_debug_queries
 import forms
 
 app = Flask(__name__)
@@ -70,15 +74,53 @@ def load_user(user_id):
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.sqlite?check_same_thread=False'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = '(/("ZOHDAJK)()kafau029)ÖÄ:ÄÖ:"OI§)"Z$()&"()!§(=")/$'
+app.config['SQLALCHEMY_RECORD_QUERIES'] = True
+app.config['SECRET_KEY'] = '(/("ZOHDAJK)()kafau029)GrazinsiuSkolaEdziuiKaiGausiuAlgaÖÄ:ÄÖ:"OI§)"Z$(0)&"()!§(=")/$'
 
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
+class Author(db.Model):
+    __tablename__ = 'author'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
+
+class Book(db.Model):
+    __tablename__ = 'book'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
+    max_count = db.Column(db.Integer, nullable=False)
+    db.UniqueConstraint('name', 'author_id')
+    author = db.relationship('Author', backref='book')
+
+    def __unicode__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
+
+class BorrowedBook(db.Model):
+    __tablename__ = 'borrowed_book'
+    id = db.Column(db.Integer, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
+    borrow_time = db.Column(db.Date, nullable=False)
+    return_time = db.Column(db.Date)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+
+class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.Integer, nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
     email_address = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
@@ -102,6 +144,9 @@ class MyModelView(ModelView):
 
 admin.add_view(MyModelView(User, db.session))
 admin.add_view(MyModelView(MyTable, db.session))
+admin.add_view(MyModelView(Book, db.session))
+admin.add_view(MyModelView(Author, db.session))
+admin.add_view(MyModelView(BorrowedBook, db.session))
 
 
 @app.route('/')
@@ -134,6 +179,7 @@ def sign_up():
         hashed_password = bcrypt.generate_password_hash(form.password1.data).decode()
         user = User(
             first_name=form.first_name.data,
+            last_name=form.last_name.data,
             email_address=form.email_address.data,
             password=hashed_password
         )
@@ -145,11 +191,11 @@ def sign_up():
     return render_template('sign_up.html', form=form)
 
 
-@app.route('/sign_in')
+@app.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
     form = forms.SignInForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(first_name=form.email_address.data).first()
+        user = User.query.filter_by(email_address=form.email_address.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             flash(f'Welcome, {current_user.first_name}', 'success')
@@ -162,10 +208,10 @@ def sign_in():
 @app.route('/update_account_information', methods=['GET', 'POST'])
 def update_account_information():
     form = forms.UpdateAccountInformationForm()
-    if request.method == 'POST':
+    if request.method == 'GET':
         form.email_address.data = current_user.email_address
-        form.first_name.data = current_user.email_address
-        form.last_name.data = current_user.email_address
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
     if form.validate_on_submit():
         current_user.email_address = form.email_address.data
         current_user.first_name = form.first_name.data
@@ -176,8 +222,26 @@ def update_account_information():
     return render_template('update_account_information.html', form=form)
 
 
+@app.route('/available_books', methods=['GET', 'POST'])
+@login_required
+def available_books():
+    form = forms.AvailableBooks()
+    q = db.session.query(Book.name.label("book_name"),  Author.name.label("author_name"),
+                         (Book.max_count - db.func.sum(db.case([(BorrowedBook.return_time.is_(None), 1)],
+                                                               else_=0))).label("available")) \
+        .join(Author, Author.id == Book.author_id)\
+        .join(BorrowedBook, BorrowedBook.book_id == Book.id, isouter=True)
+    # e = q.filter(BorrowedBook.book_id == 1)
+    g = q.group_by(Book.id, Author.id)
+    f = g.having(Book.max_count - db.func.sum(db.case([(BorrowedBook.return_time.is_(None), 1)], else_=0)))
+    data = f.all()
+
+    return render_template('show.html', data=data)
+
+
 @app.route('/sign_out')
 def sign_out():
+    logout_user()
     flash('Goodbye, see you next time', 'success')
     return render_template('home.html')
 

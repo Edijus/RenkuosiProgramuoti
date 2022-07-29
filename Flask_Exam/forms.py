@@ -13,6 +13,7 @@ class AddForm(FlaskForm):
 class SignUpForm(FlaskForm):
     email_address = StringField('Email Address', [DataRequired()])
     first_name = StringField('First Name', [DataRequired()])
+    last_name = StringField('Last Name', [DataRequired()])
     password1 = PasswordField('Password', [DataRequired()])
     password2 = PasswordField('Password confirm', [DataRequired(), EqualTo('password1', 'Passwords must match')])
     submit = SubmitField('Sign Up')
@@ -40,3 +41,10 @@ class UpdateAccountInformationForm(FlaskForm):
             user = main.User.query.filter_by(email_address=self.email_address.data).first()
             if user:
                 raise ValidationError('Email already exists. Sign in or use another email address.')
+
+
+class AvailableBooks(FlaskForm):
+    email_address = StringField('Email Address', [DataRequired()])
+    first_name = StringField('First Name', [DataRequired()])
+    last_name = StringField('Last Name')
+    submit = SubmitField('Update Info')
