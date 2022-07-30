@@ -44,7 +44,4 @@ class UpdateAccountInformationForm(FlaskForm):
 
 
 class AvailableBooks(FlaskForm):
-    email_address = StringField('Email Address', [DataRequired()])
-    first_name = StringField('First Name', [DataRequired()])
-    last_name = StringField('Last Name')
-    submit = SubmitField('Update Info')
+    submit = SubmitField('Borrow')

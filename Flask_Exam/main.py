@@ -46,6 +46,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_bcrypt import Bcrypt
 from flask_login import AnonymousUserMixin, LoginManager, login_user, current_user, login_required, UserMixin, logout_user
 from flask_sqlalchemy import SQLAlchemy, get_debug_queries
+from datetime import datetime
 import forms
 
 app = Flask(__name__)
@@ -225,17 +226,32 @@ def update_account_information():
 @app.route('/available_books', methods=['GET', 'POST'])
 @login_required
 def available_books():
-    form = forms.AvailableBooks()
+    # form = forms.AvailableBooks()
     q = db.session.query(Book.name.label("book_name"),  Author.name.label("author_name"),
-                         (Book.max_count - db.func.sum(db.case([(BorrowedBook.return_time.is_(None), 1)],
+                         Book.id.label("book_id"),
+                         (Book.max_count - db.func.sum(db.case([((BorrowedBook.return_time.is_(None) &
+                                                                  (BorrowedBook.borrow_time != None)), 1)],
                                                                else_=0))).label("available")) \
         .join(Author, Author.id == Book.author_id)\
         .join(BorrowedBook, BorrowedBook.book_id == Book.id, isouter=True)
     # e = q.filter(BorrowedBook.book_id == 1)
     g = q.group_by(Book.id, Author.id)
-    f = g.having(Book.max_count - db.func.sum(db.case([(BorrowedBook.return_time.is_(None), 1)], else_=0)))
-    data = f.all()
+    f = g.having(Book.max_count - db.func.sum(db.case([((BorrowedBook.return_time.is_(None) &
+                                                         (BorrowedBook.borrow_time != None)), 1)], else_=0)) > 0)
 
+    if request.method == 'POST':
+        borrowed_book_id = request.form['btn_identifier']
+        print(borrowed_book_id)
+
+        borrowed_book = BorrowedBook(
+            book_id=borrowed_book_id,
+            borrow_time=datetime.date(datetime.now()),
+            user_id=current_user.id
+        )
+        db.session.add(borrowed_book)
+        db.session.commit()
+
+    data = f.all()
     return render_template('show.html', data=data)
 
 
