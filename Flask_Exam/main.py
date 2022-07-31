@@ -117,6 +117,8 @@ class BorrowedBook(db.Model):
     borrow_time = db.Column(db.Date, nullable=False)
     return_time = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    book = db.relationship('Book', backref='book')
+    user = db.relationship('User', backref='user')
 
 
 class User(db.Model, UserMixin):
@@ -127,6 +129,12 @@ class User(db.Model, UserMixin):
     email_address = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
+
+    def __unicode__(self):
+        return self.email_address
+
+    def __repr__(self):
+        return self.email_address
 
 
 db.create_all()
@@ -152,6 +160,7 @@ def hash_user_password(target, value, oldvalue, initiator):
 
 
 @app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 

@@ -29,6 +29,9 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
     </li>
+    {% if current_user.is_admin %}
+        <a class="nav-link" href="/admin" style="color:red">Admin</a>
+    {% endif %}
     {% else %}
     <li class="nav-item">
         <a class="nav-link" href="{{ url_for('sign_up') }}">Sign Up</a>
