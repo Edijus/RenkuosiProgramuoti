@@ -46,6 +46,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_bcrypt import Bcrypt
 from flask_login import AnonymousUserMixin, LoginManager, login_user, current_user, login_required, UserMixin, logout_user
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import event
 from datetime import datetime
 import forms
 
@@ -141,6 +142,13 @@ admin.add_view(MyModelView(User, db.session))
 admin.add_view(MyModelView(Book, db.session))
 admin.add_view(MyModelView(Author, db.session))
 admin.add_view(MyModelView(BorrowedBook, db.session))
+
+
+@event.listens_for(User.password, 'set', retval=True)
+def hash_user_password(target, value, oldvalue, initiator):
+    if value != oldvalue:
+        return bcrypt.generate_password_hash(value).decode()
+    return value
 
 
 @app.route('/')
