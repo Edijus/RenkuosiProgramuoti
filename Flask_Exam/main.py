@@ -45,7 +45,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_bcrypt import Bcrypt
 from flask_login import AnonymousUserMixin, LoginManager, login_user, current_user, login_required, UserMixin, logout_user
-from flask_sqlalchemy import SQLAlchemy, get_debug_queries
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import forms
 
@@ -128,12 +128,6 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
 
-class MyTable(db.Model):
-    __tablename__ = 'my_table'
-    id = db.Column(db.Integer, primary_key=True)
-    my_column = db.Column(db.String(100), nullable=False)
-
-
 db.create_all()
 
 
@@ -144,7 +138,6 @@ class MyModelView(ModelView):
 
 
 admin.add_view(MyModelView(User, db.session))
-admin.add_view(MyModelView(MyTable, db.session))
 admin.add_view(MyModelView(Book, db.session))
 admin.add_view(MyModelView(Author, db.session))
 admin.add_view(MyModelView(BorrowedBook, db.session))
@@ -153,24 +146,6 @@ admin.add_view(MyModelView(BorrowedBook, db.session))
 @app.route('/')
 def home():
     return render_template('home.html')
-
-
-@app.route('/add_form', methods=['GET', 'POST'])
-def add_form():
-    form = forms.AddForm()
-    if form.validate_on_submit():
-        my_table = MyTable(my_column=form.my_column.data)
-        db.session.add(my_table)
-        db.session.commit()
-        return render_template('success.html')
-    return render_template('add_form.html', form=form)
-
-
-@app.route('/show')
-@login_required
-def show():
-    data = MyTable.query
-    return render_template('show.html', data=data)
 
 
 @app.route('/sign_up', methods=['GET', 'POST'])
@@ -241,7 +216,6 @@ def available_books():
 
     if request.method == 'POST':
         borrowed_book_id = request.form['btn_identifier']
-        print(borrowed_book_id)
 
         borrowed_book = BorrowedBook(
             book_id=borrowed_book_id,
@@ -252,7 +226,31 @@ def available_books():
         db.session.commit()
 
     data = f.all()
-    return render_template('show.html', data=data)
+    return render_template('available_books.html', data=data)
+
+
+@app.route('/my_books', methods=['GET', 'POST'])
+@login_required
+def my_books():
+    q = db.session.query(Book.name.label("book_name"), Author.name.label("author_name"),
+                         BorrowedBook.id.label("borrowed_book_id"),
+                         BorrowedBook.borrow_time.label("borrow_time"))\
+        .join(Author, Author.id == Book.author_id) \
+        .join(BorrowedBook, BorrowedBook.book_id == Book.id)
+    e = q.filter(BorrowedBook.return_time.is_(None))
+    f = e.filter(BorrowedBook.user_id == current_user.id)
+    g = f.order_by(BorrowedBook.borrow_time, Book.id, Author.id)
+
+    if request.method == 'POST':
+        borrowed_book_id = request.form['btn_identifier']
+
+        borrowed_book = db.session.query(BorrowedBook).filter(BorrowedBook.id == borrowed_book_id).first();
+        borrowed_book.return_time = datetime.date(datetime.now())
+        # db.session.update(borrowed_book)
+        db.session.commit()
+
+    data = g.all()
+    return render_template('my_books.html', data=data)
 
 
 @app.route('/sign_out')

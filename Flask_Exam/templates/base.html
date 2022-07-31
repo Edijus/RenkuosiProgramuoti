@@ -16,12 +16,9 @@
     <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('show') }}">Show</a>
-    </li>
     {% if current_user.is_authenticated %}
     <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('add_form') }}">Add</a>
+        <a class="nav-link" href="{{ url_for('my_books') }}">My books</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ url_for('update_account_information') }}">Account Information</a>
