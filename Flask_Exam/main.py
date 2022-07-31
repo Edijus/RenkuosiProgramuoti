@@ -10,6 +10,7 @@ Uzduotys:
     g) Atnaujinant registruoto vartotojo informaciją neteisingai panaudotas POST HTTP metodas
     h) Neteisingai užpildomi numatytieji duomenys "Account Information" puslapyje
     i) user first_name tarp DB buvo integer tipo
+    j) Kuriant vartotoją iš Admin puslapio, slaptažodis nebuvo šifruojamas
     ...
 2.(7) Praplesti aplikacija i bibliotekos resgistra pagal apacioje surasytus reikalavimus:
     a)(1) Naudojant SQLAlchemy klases, aprasyti lenteles Book, Author su pasirinktinais atributais su tinkamu rysiu -
