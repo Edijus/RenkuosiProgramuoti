@@ -2,3 +2,9 @@
 /*/build/*
 /*/.idea/*
 /*/dist/*
+/Python 17/my.db-journal
+/*/__pycache__/*
+/django_venv/Lib/*
+/Python 25/django_venv/Lib/*
+/*/*/__pycache__/*
+/Python 25/django_venv/*/*

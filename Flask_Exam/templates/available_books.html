@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Author</th>
+        <th scope="col">Book</th>
+        <th scope="col">Available books</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+        {% for row in data %}
+        <tbody>
+        <tr class="table-success">
+            <form method="POST" action="">
+                <th scope="row">{{ row.author_name }}</th>
+                <td>{{ row.book_name }}</td>
+                <td>{{ row.available }}</td>
+                <input type="hidden" name="btn_identifier" value="{{ row.book_id }}" />
+                <td><input type="submit" name="borrow_book" value="Borrow"></td>
+            </form>
+        </tr>
+        {% endfor %}
+        </tbody>
+</table>
+{% endblock %}
