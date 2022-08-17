@@ -14,7 +14,7 @@
     <tbody>
     <tr class="table-success">
         <th scope="row">{{ order.vehicle }}</th>
-        <th><img src="{{ order.image.url }}" alt="" width="30" height="24"></th>
+        <th><img src="/media/{{ order.image }}" alt="" width="30" height="24"></th>
         <td>{{ order.total_sum }}</td>
         <td>{{ order.date_created }}</td>
         <td><a href="{% url 'show_order' id=order.id %}">Inspect</a></td>

@@ -4,9 +4,9 @@ from .models import User
 
 
 class SignUpForm(UserCreationForm):
-    email_address = forms.EmailField()
-    image = forms.ImageField()
+    email = forms.EmailField()
+    # image = forms.ImageField()
 
     class Meta:
         model = User
-        fields = ['username', 'email_address', 'password1', 'password2', 'image']
+        fields = ['username', 'email', 'password1', 'password2']

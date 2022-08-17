@@ -5,6 +5,6 @@ urlpatterns = [
     path('', index, name='index'),
     path('orders/page<int:page>/', show_orders, name='show_orders'),
     path('order<int:id>/', show_order, name='show_order'),
-    path('account/sign_up', sign_up, name='sign_up'),
+    path('registration/sign_up', sign_up, name='sign_up'),
 ]
 
