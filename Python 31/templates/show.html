@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Code</th>
+        <th scope="col">Date Created</th>
+    </tr>
+    </thead>
+    {% for parent in parents %}
+    <tbody>
+    <tr class="table-success">
+        <th scope="row">{{ parent.parent__name }}</th>
+        <td>{{ parent.parent__code }}</td>
+        <td>{{ parent.parent__date_created }}</td>
+    </tr>
+    {% endfor %}
+    {% for child in children %}
+    <tbody>
+    <tr class="table-info">
+        <th scope="row">{{ child.child__name }}</th>
+        <td>{{ child.child__code }}</td>
+        <td>{{ child.child__date_created }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
