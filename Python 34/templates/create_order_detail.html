@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <form method="post" action="">
+    {% csrf_token %}
+    {% if form.vehicle.errors %}
+      {{ form.vehicle.errors }}
+    {% endif %}
+    <table>
+      <tr>
+        <td>Service: </td>
+        <td>{{ form.service }}</td>
+      </tr>
+      <tr>
+        <td>Quantity: </td>
+        <td>{{ form.quantity }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="Add" />
+  </form>
+
+{% endblock %}
