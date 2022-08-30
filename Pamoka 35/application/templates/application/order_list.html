@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Vehicle</th>
+        <th scope="col">Image</th>
+        <th scope="col">Date Created</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    {% for order in order_list %}
+    <tbody>
+    <tr class="table-success">
+        <th scope="row">{{ order.vehicle }}</th>
+        <th><img src="{{ order.image.url }}" alt="" width="30" height="24"></th>
+        <td>{{ order.date_created }}</td>
+        <td><a href="{% url 'application:order_update' pk=order.id %}">Update</a></td>
+        <td><a href="{% url 'application:order_delete' pk=order.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

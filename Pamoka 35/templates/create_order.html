@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="{% url 'create_order' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.vehicle.errors %}
+    {{ form.vehicle.errors }}
+    {% endif %}
+    <table>
+        <tr>
+            <td>Vehicle:</td>
+            <td>{{ form.vehicle }}</td>
+        </tr>
+        <tr>
+            <td>Image:</td>
+            <td>{{ form.image }}</td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit"/>
+</form>
+
+{% endblock %}

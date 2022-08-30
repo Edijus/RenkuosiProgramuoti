@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Vehicle</th>
+        <th scope="col">Image</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    {% for order in orders %}
+    <tbody>
+    <tr class="table-success">
+        <th scope="row">{{ order.vehicle }}</th>
+        <th><img src="/media/{{ order.image }}" alt="" width="30" height="24"></th>
+        <td>{{ order.total_price }}</td>
+        <td>{{ order.date_created }}</td>
+        <td><a href="{% url 'show_order' id=order.id %}">Inspect</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

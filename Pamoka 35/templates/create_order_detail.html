@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Service:</td>
+            <td>{{ form.service }}</td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td>{{ form.quantity }}</td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit"/>
+</form>
+
+{% endblock %}
